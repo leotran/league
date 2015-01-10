@@ -129,8 +129,8 @@ class league_season_team(models.Model):
     goal_against = fields.Integer(string='GA', store=True, readonly=True, compute='_count')
     goal_defference = fields.Integer(string='GD', store=True, readonly=True, compute='_count')
     point = fields.Integer(string='Pts', store=True, readonly=True, compute='_count')
-    fixture_home_ids = fields.One2many('fixture', 'team_home_id', string='Fixture Home', readonly=True)
-    fixture_away_ids = fields.One2many('fixture', 'team_away_id', string='Fixture Away', readonly=True)
+    fixture_home_ids = fields.One2many('fixture', 'team_home_id', string='Matches Home', readonly=True)
+    fixture_away_ids = fields.One2many('fixture', 'team_away_id', string='Matches Away', readonly=True)
     rank = fields.Integer('Rank', default=1)
     
     _order = 'rank,name'    
@@ -149,6 +149,7 @@ class league_season_player(models.Model):
         domain=[('football_player','=',True)])
     name = fields.Char(string='Name', related='player_id.name', store=True, readonly=True)
     squad = fields.Integer('Squad')
+    fixture_player_ids = fields.One2many('fixture.player', 'player_id', string="Matches")    
     
     @api.multi
     def name_get(self):
