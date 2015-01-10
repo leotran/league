@@ -52,6 +52,38 @@
 		<menuitem id="team_config_menu"
 			parent="menu_league_config" action="action_team_tree_view"
 			sequence="3" />
+			
+		<!-- player -->
+			
+		<record id="view_player_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.league.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <page name="internal_notes" position="after">
+                	<page string="Sport Information">
+                		<group>
+                			<group>
+                				<field name="football_player"/>
+                			</group>
+                		</group>
+                	</page>
+                </page>
+            </field>
+        </record>
+        
+        <record id="action_football_player_form" model="ir.actions.act_window">
+            <field name="name">Player</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('football_player','=',1)]</field>
+            <field name="context">{'default_football_player':1, 'default_customer':0}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        </record>
+        
+        <menuitem id="menu_football_player_form" parent="menu_league_config" action="action_football_player_form" sequence="4"/>
     
     </data>
 </openerp>

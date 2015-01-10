@@ -131,13 +131,24 @@ class league_season_team(models.Model):
     point = fields.Integer(string='Pts', store=True, readonly=True, compute='_count')
     fixture_home_ids = fields.One2many('fixture', 'team_home_id', string='Fixture Home', readonly=True)
     fixture_away_ids = fields.One2many('fixture', 'team_away_id', string='Fixture Away', readonly=True)
-    rank = fields.Integer('Rank')
-    
-    _defaults = {  
-        'rank': 1,  
-    }
+    rank = fields.Integer('Rank', default=1)
     
     _order = 'rank,name'    
+
+class league_season_player(models.Model):
+    _name = 'league.season.player'
+    
+    league_season_id = fields.Many2one('league.season', string='League Season',
+        ondelete='cascade')
+    league_id = fields.Many2one('league', string='League',
+        related='league_season_id.league_id', store=True, readonly=True)
+    season_id = fields.Many2one('season', string='Season',
+        related='league_season_id.season_id', store=True, readonly=True)
+    team_id = fields.Many2one('team', string='Team', required=True)
+    player_id = fields.Many2one('res.partner', string="Player", required=True, domain=[('football_player','=',True)])
+    name = fields.Char(string='Name', related='player_id.name', store=True, readonly=True)
+    rank = fields.Integer('Rank', default=1)
+    _order = 'rank,name'
 
 class league_season(models.Model):
     _name = 'league.season'
@@ -153,6 +164,8 @@ class league_season(models.Model):
     start_date = fields.Date(string='Start Date')
     end_date = fields.Date(string='End Date')
     team_ids = fields.One2many('league.season.team', 'league_season_id', string='Team',
+         states={'open': [('readonly', True)], 'finish': [('readonly', True)]})
+    player_ids = fields.One2many('league.season.player', 'league_season_id', string='Team',
          states={'open': [('readonly', True)], 'finish': [('readonly', True)]})
     state = fields.Selection([
               ('draft', 'New'),

@@ -19,8 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api
-from openerp import tools
+from openerp import models, fields
 
 class team(models.Model):
     _name = 'team'
@@ -29,3 +28,8 @@ class team(models.Model):
     name = fields.Char(string='Name', size=128, required=True)
     image = fields.Binary(string='Photo')
     country_id = fields.Many2one('res.country', string='Country', required=True)
+    
+class res_partner(models.Model):
+    _inherit = 'res.partner'
+    
+    football_player = fields.Boolean(string="Football Player")

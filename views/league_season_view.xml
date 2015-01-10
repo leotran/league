@@ -70,6 +70,15 @@
 									</tree>
 								</field>
 							</page>
+							<page string="Players">
+								<field name="player_ids" nolabel="1">
+									<tree string="Players" editable="bottom">
+										<field name="rank" invisible="1" />
+										<field name="player_id" />
+										<field name="team_id" />
+									</tree>
+								</field>
+							</page>
 						</notebook>
 					</sheet>
 					<div class="oe_chatter">
@@ -168,6 +177,36 @@
 		<menuitem id="premier_league_season_team_menu" groups="league.group_league_user"
 			parent="menu_premier_league" action="action_pl_league_season_team_tree_view"
 			sequence="3" />
+			
+		<!-- Premier League Season Players -->
+
+		<record model="ir.ui.view" id="pl_league_season_player_tree_view">
+			<field name="name">pl.league.season.player.tree</field>
+			<field name="model">league.season.player</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Season Player">
+					<field name="rank" invisible="1" />
+					<field name="player_id" />
+					<field name="team_id" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="action_pl_league_season_player_tree_view">
+			<field name="name">Squads</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">league.season.player</field>
+			<field name="view_type">tree</field>
+			<field name="view_mode">tree</field>
+			<field name="domain">[('league_id','=',1)]</field>
+			<field name="context">{'default_league_id': 1,'search_default_open': 1}
+			</field>
+		</record>
+		
+		<menuitem id="premier_league_season_player_menu" groups="league.group_league_user"
+			parent="menu_premier_league" action="action_pl_league_season_player_tree_view"
+			sequence="4" />
 			
 		<!-- La Liga Season Teams -->
 

@@ -21,6 +21,15 @@
 ##############################################################################
 from openerp import models, fields, api, _
 
+class fixture_player(models.Model):
+    _name = 'fixture.player'
+    
+    fixture_id = fields.Many2one('fixture', string="Fixture", ondelete='restrict')
+    player_id = fields.Many2one('league.season.player', string="Player", required=True)
+    goal = fields.Integer(string="Goals")
+    home = fields.Boolean(string="Home")
+    
+
 class fixture(models.Model):
     _name = 'fixture'
     _description = 'Fixture'
@@ -39,8 +48,10 @@ class fixture(models.Model):
         readonly=True, states={'draft': [('readonly', False)]})
     team_home_id = fields.Many2one('league.season.team', string='Home', required=True,
         readonly=True, states={'draft': [('readonly', False)]})
+    player_home_ids = fields.One2many('fixture.player', 'fixture_id', string="Home Players", domain=[('home','=',True)])
     team_away_id = fields.Many2one('league.season.team', string='Away', required=True,
         readonly=True, states={'draft': [('readonly', False)]})
+    player_away_ids = fields.One2many('fixture.player', 'fixture_id', string="Away Players", domain=[('home','=',False)])
     home_score = fields.Integer('Score', required=True,
         readonly=True, states={'draft': [('readonly', False)]})
     away_score = fields.Integer('Score', required=True,

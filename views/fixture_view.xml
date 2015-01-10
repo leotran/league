@@ -55,10 +55,12 @@
 							<group string="Home">
 								<field name="team_home_id" domain="[('league_season_id','=',league_season_id)]" />
 								<field name="home_score" />
+								<field name="player_home_ids" nolabel="1" />
 							</group>
 							<group string="Away">
 								<field name="team_away_id" domain="[('league_season_id','=',league_season_id)]" />
 								<field name="away_score" />
+								<field name="player_away_ids" nolabel="1" />
 							</group>
 						</group>
 					</sheet>
@@ -101,7 +103,7 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 			<field name="domain">[('league_id','=',1)]</field>
-			<field name="context">{'default_league_id':1}</field>
+			<field name="context">{'default_league_id':1, 'search_default_new':1}</field>
 		</record>
 
 		<menuitem id="premier_league_fixture_menu" parent="menu_premier_league"
@@ -116,7 +118,7 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 			<field name="domain">[('league_id','=',2)]</field>
-			<field name="context">{'default_league_id':2}</field>
+			<field name="context">{'default_league_id':2, 'search_default_new':1}</field>
 		</record>
 
 		<menuitem id="la_liga_fixture_menu" parent="menu_la_liga"
