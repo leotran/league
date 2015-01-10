@@ -55,14 +55,32 @@
 							<group string="Home">
 								<field name="team_home_id" domain="[('league_season_id','=',league_season_id)]" />
 								<field name="home_score" />
-								<field name="player_home_ids" nolabel="1" />
 							</group>
 							<group string="Away">
 								<field name="team_away_id" domain="[('league_season_id','=',league_season_id)]" />
 								<field name="away_score" />
-								<field name="player_away_ids" nolabel="1" />
 							</group>
 						</group>
+						<notebook>
+							<page string="Home Players">
+								<field name="player_home_ids" nolabel="1" context="{'default_home':1}">
+									<tree string="Players" editable="bottom">										
+										<field name="player_id"/>
+										<field name="goal"/>
+										<field name="home" invisible="1"/>
+									</tree>
+								</field>
+							</page>
+							<page string="Away Players">
+								<field name="player_away_ids" nolabel="1" context="{'default_home':0}">
+									<tree string="Players" editable="bottom">										
+										<field name="player_id"/>
+										<field name="goal"/>
+										<field name="home" invisible="1"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
 					</sheet>
 					<div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"

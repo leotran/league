@@ -33,3 +33,10 @@ class res_partner(models.Model):
     _inherit = 'res.partner'
     
     football_player = fields.Boolean(string="Football Player")
+    position = fields.Selection([
+        ('gk', 'Goalkeeper'),
+        ('df', 'Defender'),
+        ('m', 'Midfielder'),
+        ('am', 'Attacking Midfielder'),
+        ('st', 'Striker'),
+    ], string="Position")

@@ -26,9 +26,13 @@ class fixture_player(models.Model):
     
     fixture_id = fields.Many2one('fixture', string="Fixture", ondelete='restrict')
     player_id = fields.Many2one('league.season.player', string="Player", required=True)
-    goal = fields.Integer(string="Goals")
+    goal = fields.Integer(string="Goals", default=0)
     home = fields.Boolean(string="Home")
     
+    _sql_constraints = [
+        ('player_uniq', 'unique(fixture_id,player_id)',
+            'Player must be unique per fixture!'),
+    ]    
 
 class fixture(models.Model):
     _name = 'fixture'

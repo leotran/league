@@ -139,7 +139,7 @@ class league_season_player(models.Model):
     _name = 'league.season.player'
     
     league_season_id = fields.Many2one('league.season', string='League Season',
-        ondelete='cascade')
+        ondelete='cascade', required=True)
     league_id = fields.Many2one('league', string='League',
         related='league_season_id.league_id', store=True, readonly=True)
     season_id = fields.Many2one('season', string='Season',
@@ -147,8 +147,7 @@ class league_season_player(models.Model):
     team_id = fields.Many2one('team', string='Team', required=True)
     player_id = fields.Many2one('res.partner', string="Player", required=True, domain=[('football_player','=',True)])
     name = fields.Char(string='Name', related='player_id.name', store=True, readonly=True)
-    rank = fields.Integer('Rank', default=1)
-    _order = 'rank,name'
+    squad = fields.Integer('Squad')
 
 class league_season(models.Model):
     _name = 'league.season'

@@ -73,8 +73,8 @@
 							<page string="Players">
 								<field name="player_ids" nolabel="1">
 									<tree string="Players" editable="bottom">
-										<field name="rank" invisible="1" />
-										<field name="player_id" />
+										<field name="squad" />
+										<field name="player_id" context="{'default_football_player':1}" />
 										<field name="team_id" />
 									</tree>
 								</field>
@@ -186,10 +186,34 @@
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
 				<tree string="Season Player">
-					<field name="rank" invisible="1" />
+					<field name="squad" />
 					<field name="player_id" />
 					<field name="team_id" />
 				</tree>
+			</field>
+		</record>
+		
+		<record id="league_season_player_form_view" model="ir.ui.view">
+			<field name="name">league.season.player.form</field>
+			<field name="model">league.season.player</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Players">
+					<sheet>
+						<group>
+							<group>
+								<field name="squad"/>
+								<field name="player_id" context="{'default_football_player':1}"/>
+								<field name="team_id"/>
+							</group>
+							<group>
+								<field name="league_season_id"/>
+								<field name="league_id"/>
+								<field name="season_id"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
 			</field>
 		</record>
 		
@@ -197,8 +221,8 @@
 			<field name="name">Squads</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">league.season.player</field>
-			<field name="view_type">tree</field>
-			<field name="view_mode">tree</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
 			<field name="domain">[('league_id','=',1)]</field>
 			<field name="context">{'default_league_id': 1,'search_default_open': 1}
 			</field>
