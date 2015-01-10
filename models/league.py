@@ -145,9 +145,21 @@ class league_season_player(models.Model):
     season_id = fields.Many2one('season', string='Season',
         related='league_season_id.season_id', store=True, readonly=True)
     team_id = fields.Many2one('team', string='Team', required=True)
-    player_id = fields.Many2one('res.partner', string="Player", required=True, domain=[('football_player','=',True)])
+    player_id = fields.Many2one('res.partner', string="Player", required=True,
+        domain=[('football_player','=',True)])
     name = fields.Char(string='Name', related='player_id.name', store=True, readonly=True)
     squad = fields.Integer('Squad')
+    
+    @api.multi
+    def name_get(self):
+        reads = self.read(['name','team_id'])
+        res = []
+        for record in reads:
+            name = record['name']
+            if record['team_id']:
+                name = record['team_id'][1]+' / '+name
+            res.append((record['id'], name))
+        return res
 
 class league_season(models.Model):
     _name = 'league.season'
