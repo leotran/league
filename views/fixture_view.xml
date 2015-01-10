@@ -65,7 +65,8 @@
 							<page string="Home Players">
 								<field name="player_home_ids" nolabel="1" context="{'default_home':1}">
 									<tree string="Players" editable="bottom">										
-										<field name="player_id"/>
+										<field name="player_id"
+											context="{'default_league_season_id':parent.league_season_id,'default_team_id':parent.team_home_id}"/>
 										<field name="goal"/>
 										<field name="home" invisible="1"/>
 									</tree>
@@ -74,7 +75,8 @@
 							<page string="Away Players">
 								<field name="player_away_ids" nolabel="1" context="{'default_home':0}">
 									<tree string="Players" editable="bottom">										
-										<field name="player_id"/>
+										<field name="player_id" 
+											context="{'default_league_season_id':parent.league_season_id,'default_team_id':parent.team_away_id}"/>
 										<field name="goal"/>
 										<field name="home" invisible="1"/>
 									</tree>
