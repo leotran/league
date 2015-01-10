@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<!-- Fixture -->
+
+		<record id="fixture_tree_view" model="ir.ui.view">
+			<field name="name">fixture.tree</field>
+			<field name="model">fixture</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Fixtures" colors="blue:state=='draft';gray:state=='close'">
+					<field name="name" />
+					<field name="datetime" />
+					<field name="team_home_id" />
+					<field name="home_score" />
+					<field name="away_score" />
+					<field name="team_away_id" />										
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="fixture_form_view" model="ir.ui.view">
+			<field name="name">fixture.form</field>
+			<field name="model">fixture</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Fixture">
+					<header>
+						<button name="action_finish" string="Finish" type="object"
+							states="draft" class="oe_highlight" />
+						<button name="action_close" string="Close" type="object"
+							states="finish" class="oe_highlight" />
+						<button name="action_draft" string="Set to Draft" type="object" states="finish" />
+						<field name="state" readonly="1" statusbar_visible="draft,finish"
+							widget="statusbar" />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="league_season_id" 
+									on_change="onchange_league_season_id(league_season_id)"
+									domain="[('league_id','=',league_id)]" />
+								<field name="name" />								
+								<field name="league_id" on_change="onchange_league_id(league_id)"
+									invisible="1" />
+								<field name="season_id" invisible="1" />
+							</group>
+							<group>
+								<field name="datetime" />
+							</group>
+						</group>
+						<group>
+							<group string="Home">
+								<field name="team_home_id" domain="[('league_season_id','=',league_season_id)]" />
+								<field name="home_score" />
+							</group>
+							<group string="Away">
+								<field name="team_away_id" domain="[('league_season_id','=',league_season_id)]" />
+								<field name="away_score" />
+							</group>
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"
+                               groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+		
+		<record id="fixture_search_view" model="ir.ui.view">
+			<field name="name">fixture.search</field>
+			<field name="model">fixture</field>
+			<field name="arch" type="xml">
+				<search string="Search">
+					<field name="name" string="Round" filter_domain="[('name','ilike', self)]" />
+					<separator />
+					<filter string="New" name="new" domain="[('state','=','draft')]"
+						help="New" />
+					<filter string="Finish" name="finish" domain="[('state','=','finish')]"
+						help="Finish" />
+					<filter string="Close" name="close" domain="[('state','=','close')]"
+						help="Close" />
+					<group expand="0" string="Group By...">
+						<filter name="round" string="Round" domain="[]" context="{'group_by':'name'}" />
+						<filter name="season" string="Season" domain="[]" context="{'group_by':'season_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Premier League Fixture -->
+
+		<record model="ir.actions.act_window" id="action_premier_league_fixture_tree_view">
+			<field name="name">Fixtures</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">fixture</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('league_id','=',1)]</field>
+			<field name="context">{'default_league_id':1}</field>
+		</record>
+
+		<menuitem id="premier_league_fixture_menu" parent="menu_premier_league"
+			action="action_premier_league_fixture_tree_view" sequence="1" />
+			
+		<!-- La Liga Fixture -->
+
+		<record model="ir.actions.act_window" id="action_la_liga_fixture_tree_view">
+			<field name="name">Fixtures</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">fixture</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('league_id','=',2)]</field>
+			<field name="context">{'default_league_id':2}</field>
+		</record>
+
+		<menuitem id="la_liga_fixture_menu" parent="menu_la_liga"
+			action="action_la_liga_fixture_tree_view" sequence="1" />
+
+	</data>
+</openerp>

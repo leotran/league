@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    	<record model="team" id="team_arsenal">
+            <field name="name">Arsenal</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/arsenal.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_aston_villa">
+            <field name="name">Aston Villa</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/aston_villa.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_burnley">
+            <field name="name">Burnley</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/burnley.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_chelsea">
+            <field name="name">Chelsea</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/chelsea.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_crystal_palace">
+            <field name="name">Crystal Palace</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/crystal_palace.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_everton">
+            <field name="name">Everton</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/everton.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_hull_city">
+            <field name="name">Hull City</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/hull_city.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_leicester_city">
+            <field name="name">Leicester City</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/leicester_city.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_liverpool">
+            <field name="name">Liverpool</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/liverpool.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_manchester_city">
+            <field name="name">Manchester City</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/manchester_city.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_manchester_united">
+            <field name="name">Manchester United</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/manchester_united.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_newcastle_united">
+            <field name="name">Newcastle United</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/newcastle_united.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_queens_park_rangers">
+            <field name="name">Queens Park Rangers</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/qpr.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_southampton">
+            <field name="name">Southampton</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/southampton.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_stoke_city">
+            <field name="name">Stoke City</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/stoke_city.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_sunderland">
+            <field name="name">Sunderland</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/sunderland.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_swansea_city">
+            <field name="name">Swansea City</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/swansea_city.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_tottenham_hotspur">
+            <field name="name">Tottenham Hotspur</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/tottenham_hotspur.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_west_bromwich_albion">
+            <field name="name">West Bromwich Albion</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/west_bromwich_albion.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+        
+        <record model="team" id="team_west_ham_united">
+            <field name="name">West Ham United</field>
+            <field name="image" type="base64" file="league/static/img/team_logos/west_ham_united.png"></field>
+            <field name="country_id" ref="league.en"/>
+        </record>
+    
+    </data>
+</openerp>

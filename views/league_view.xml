@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<menuitem id="menu_league_root" name="Leagues" sequence="15" />
+		<menuitem parent="menu_league_root" id="menu_league_config"
+			name="Configuration" sequence="20" />
+
+		<!-- League -->
+
+		<record id="league_tree_view" model="ir.ui.view">
+			<field name="name">league.tree</field>
+			<field name="model">league</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Leagues">
+					<field name="code" />
+					<field name="name" />
+					<field name="country_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="league_form_view" model="ir.ui.view">
+			<field name="name">league.form</field>
+			<field name="model">league</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="League">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" />
+								<field name="country_id" />
+							</group>
+							<group>
+								<field name="code" />							
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_league_tree_view">
+			<field name="name">Leagues</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">league</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+		<menuitem id="league_config_menu" groups="base.group_no_one"
+			parent="menu_league_config" action="action_league_tree_view"
+			sequence="1" />
+
+		<!-- Season -->
+
+		<record id="season_tree_view" model="ir.ui.view">
+			<field name="name">season.tree</field>
+			<field name="model">season</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Season">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="season_form_view" model="ir.ui.view">
+			<field name="name">season.form</field>
+			<field name="model">season</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Season">
+					<sheet>
+						<group>
+							<field name="name" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_season_tree_view">
+			<field name="name">Seasons</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">season</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+
+		<menuitem id="season_config_menu" parent="menu_league_config"
+			action="action_season_tree_view" sequence="2" />
+
+	</data>
+</openerp>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+    
+    	<!-- Country -->
+    	<record id="en" model="res.country">
+            <field name="name">England</field>
+            <field name="code">en</field>
+            <field name="image" type="base64" file="league/static/img/country_flags/en.png"></field>
+            <field name="currency_id" ref="base.EUR"/>
+        </record>
+    	
+    	<!-- League -->
+        <record model="league" id="league_premier">
+            <field name="name">Premier League</field>
+            <field name="country_id" ref="en" />
+        </record>
+        
+        <record model="league" id="league_laliga">
+            <field name="name">La Liga</field>
+            <field name="country_id" ref="base.es" />
+        </record>
+        
+        <record model="league" id="league_bundesliga">
+            <field name="name">Bundesliga</field>
+            <field name="country_id" ref="base.de" />
+        </record>
+        
+        <record model="league" id="league_seriea">
+            <field name="name">Serie A</field>
+            <field name="country_id" ref="base.it" />            
+        </record>
+        
+        <record model="league" id="league_league1">
+            <field name="name">League 1</field>
+            <field name="country_id" ref="base.fr" />
+        </record>
+        
+        <!-- Season -->
+        <record model="season" id="season_14_15">
+            <field name="name">2014 - 2015</field>
+        </record>
+        
+        <record model="season" id="season_15_16">
+            <field name="name">2015 - 2016</field>
+        </record>
+        
+        <record model="season" id="season_16_17">
+            <field name="name">2016 - 2017</field>
+        </record>
+    
+    </data>
+</openerp>

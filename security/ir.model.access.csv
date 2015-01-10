@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_league_user,league.user,model_league,group_league_user,1,0,0,0
+access_league_manager,league.manager,model_league,base.group_no_one,1,1,1,1
+access_season_user,season.user,model_season,group_league_user,1,0,0,0
+access_season_manager,season.manager,model_season,group_league_manager,1,1,1,1
+access_team_user,team.user,model_team,group_league_user,1,0,0,0
+access_team_manager,team.manager,model_team,group_league_manager,1,1,1,1
+access_league_season_user,league.season.user,model_league_season,group_league_user,1,0,0,0
+access_league_season_manager,league.season.manager,model_league_season,group_league_manager,1,1,1,1
+access_league_season_team_user,league.season.team.user,model_league_season_team,group_league_user,1,1,0,0
+access_league_season_team_manager,league.season.team.manager,model_league_season_team,group_league_manager,1,1,1,1
+access_fixture_user,fixture.user,model_fixture,group_league_user,1,1,1,0
+access_fixture_manager,fixture.manager,model_fixture,group_league_manager,1,1,1,1
