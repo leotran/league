@@ -129,14 +129,28 @@ class league_season_team(models.Model):
     goal_against = fields.Integer(string='GA', store=True, readonly=True, compute='_count')
     goal_defference = fields.Integer(string='GD', store=True, readonly=True, compute='_count')
     point = fields.Integer(string='Pts', store=True, readonly=True, compute='_count')
-    fixture_home_ids = fields.One2many('fixture', 'team_home_id', string='Fixture Home', readonly=True)
-    fixture_away_ids = fields.One2many('fixture', 'team_away_id', string='Fixture Away', readonly=True)
+    fixture_home_ids = fields.One2many('fixture', 'team_home_id', string='Matches Home', readonly=True)
+    fixture_away_ids = fields.One2many('fixture', 'team_away_id', string='Matches Away', readonly=True)
     rank = fields.Integer('Rank', default=1)
     
     _order = 'rank,name'    
 
 class league_season_player(models.Model):
     _name = 'league.season.player'
+    
+    @api.one
+    @api.depends(
+        'fixture_player_ids.player_id',
+        'fixture_player_ids.goal'
+    )
+    def _count(self):        
+        goals = 0
+        for f in self.fixture_player_ids:
+            goals += f.goal
+        self.total_goal = goals
+        self.total_played = len(self.fixture_player_ids)
+        self.total_yc = 0
+        self.total_rc = 0
     
     league_season_id = fields.Many2one('league.season', string='League Season',
         ondelete='cascade', required=True)
@@ -145,9 +159,28 @@ class league_season_player(models.Model):
     season_id = fields.Many2one('season', string='Season',
         related='league_season_id.season_id', store=True, readonly=True)
     team_id = fields.Many2one('team', string='Team', required=True)
-    player_id = fields.Many2one('res.partner', string="Player", required=True, domain=[('football_player','=',True)])
+    player_id = fields.Many2one('res.partner', string="Player", required=True,
+        domain=[('football_player','=',True)])
     name = fields.Char(string='Name', related='player_id.name', store=True, readonly=True)
     squad = fields.Integer('Squad')
+    total_played = fields.Integer(string="Played", readonly=True,store=True, compute='_count')
+    total_goal = fields.Integer(string="Goals", readonly=True, store=True, compute='_count')
+    total_yc = fields.Integer(string="Yellow Card", readonly=True, store=True, compute='_count')
+    total_rc = fields.Integer(string="Red Card", readonly=True, store=True, compute='_count')
+    fixture_player_ids = fields.One2many('fixture.player', 'player_id', string="Matches")    
+    
+    _order = "total_goal desc,total_played,name"
+    
+    @api.multi
+    def name_get(self):
+        reads = self.read(['name','team_id'])
+        res = []
+        for record in reads:
+            name = record['name']
+            if record['team_id']:
+                name = record['team_id'][1]+' / '+name
+            res.append((record['id'], name))
+        return res
 
 class league_season(models.Model):
     _name = 'league.season'

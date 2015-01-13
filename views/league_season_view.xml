@@ -4,9 +4,9 @@
 
 		<menuitem parent="menu_league_root" id="menu_premier_league"
 			name="Premier League" sequence="1" />
-			
-		<menuitem parent="menu_league_root" id="menu_la_liga"
-			name="La Liga" sequence="2" />
+
+		<menuitem parent="menu_league_root" id="menu_la_liga" name="La Liga"
+			sequence="2" />
 
 		<!-- Season -->
 
@@ -76,6 +76,10 @@
 										<field name="squad" />
 										<field name="player_id" context="{'default_football_player':1}" />
 										<field name="team_id" />
+										<field name="total_played" />
+										<field name="total_goal" />
+										<field name="total_yc" />
+										<field name="total_rc" />
 									</tree>
 								</field>
 							</page>
@@ -123,7 +127,7 @@
 		<menuitem id="premier_league_season_menu" groups="league.group_league_manager"
 			parent="menu_premier_league" action="action_premier_league_season_tree_view"
 			sequence="2" />
-			
+
 		<!-- La Liga -->
 
 		<record model="ir.actions.act_window" id="action_la_liga_season_tree_view">
@@ -162,7 +166,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record model="ir.actions.act_window" id="action_pl_league_season_team_tree_view">
 			<field name="name">Rankings</field>
 			<field name="type">ir.actions.act_window</field>
@@ -173,11 +177,11 @@
 			<field name="context">{'default_league_id': 1,'search_default_open': 1}
 			</field>
 		</record>
-		
+
 		<menuitem id="premier_league_season_team_menu" groups="league.group_league_user"
 			parent="menu_premier_league" action="action_pl_league_season_team_tree_view"
 			sequence="3" />
-			
+
 		<!-- Premier League Season Players -->
 
 		<record model="ir.ui.view" id="pl_league_season_player_tree_view">
@@ -189,10 +193,14 @@
 					<field name="squad" />
 					<field name="player_id" />
 					<field name="team_id" />
+					<field name="total_played" />
+					<field name="total_goal" />
+					<field name="total_yc" />
+					<field name="total_rc" />
 				</tree>
 			</field>
 		</record>
-		
+
 		<record id="league_season_player_form_view" model="ir.ui.view">
 			<field name="name">league.season.player.form</field>
 			<field name="model">league.season.player</field>
@@ -202,21 +210,21 @@
 					<sheet>
 						<group>
 							<group>
-								<field name="squad"/>
-								<field name="player_id" context="{'default_football_player':1}"/>
-								<field name="team_id"/>
+								<field name="squad" />
+								<field name="player_id" context="{'default_football_player':1}" />
+								<field name="team_id" />
 							</group>
 							<group>
-								<field name="league_season_id"/>
-								<field name="league_id"/>
-								<field name="season_id"/>
+								<field name="league_season_id" />
+								<field name="league_id" />
+								<field name="season_id" />
 							</group>
 						</group>
 					</sheet>
 				</form>
 			</field>
 		</record>
-		
+
 		<record model="ir.actions.act_window" id="action_pl_league_season_player_tree_view">
 			<field name="name">Squads</field>
 			<field name="type">ir.actions.act_window</field>
@@ -227,11 +235,11 @@
 			<field name="context">{'default_league_id': 1,'search_default_open': 1}
 			</field>
 		</record>
-		
+
 		<menuitem id="premier_league_season_player_menu" groups="league.group_league_user"
 			parent="menu_premier_league" action="action_pl_league_season_player_tree_view"
 			sequence="4" />
-			
+
 		<!-- La Liga Season Teams -->
 
 		<record model="ir.ui.view" id="liga_league_season_team_tree_view">
@@ -253,7 +261,7 @@
 				</tree>
 			</field>
 		</record>
-		
+
 		<record model="ir.actions.act_window" id="action_liga_league_season_team_tree_view">
 			<field name="name">Rankings</field>
 			<field name="type">ir.actions.act_window</field>
@@ -264,7 +272,7 @@
 			<field name="context">{'default_league_id': 2,'search_default_open': 1}
 			</field>
 		</record>
-		
+
 		<menuitem id="la_liga_season_team_menu" groups="league.group_league_user"
 			parent="menu_la_liga" action="action_liga_league_season_team_tree_view"
 			sequence="3" />
