@@ -46,6 +46,7 @@
 								<field name="league_id" on_change="onchange_league_id(league_id)"
 									invisible="1" />
 								<field name="season_id" invisible="1" />
+								<field name="month_id" widget="selection" />
 							</group>
 							<group>
 								<field name="datetime" />

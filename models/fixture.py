@@ -21,6 +21,11 @@
 ##############################################################################
 from openerp import models, fields, api, _
 
+class fixture_month(models.Model):
+    _name = 'fixture.month'
+    
+    name = fields.Char(string="Month", required=True)
+    
 class fixture_player(models.Model):
     _name = 'fixture.player'
     
@@ -48,6 +53,7 @@ class fixture(models.Model):
     season_id = fields.Many2one('season', string='Season',
         related='league_season_id.season_id', store=True,
         readonly=True, states={'draft': [('readonly', False)]})
+    month_id = fields.Many2one('fixture.month', string="Month")
     datetime = fields.Date(string='Datetime',
         readonly=True, states={'draft': [('readonly', False)]})
     team_home_id = fields.Many2one('league.season.team', string='Home', required=True,

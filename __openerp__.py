@@ -36,6 +36,7 @@ Leagues Management
          'data/module_data.xml',
          'data/league_data.xml',
          'data/team_data.xml',   
+         'data/month_data.xml',
          'security/league_security.xml',
          'security/ir.model.access.csv',
          'views/league_view.xml',

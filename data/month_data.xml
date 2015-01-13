@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    	<record id="month8" model="fixture.month">
+    		<field name="name">Aug</field>
+    	</record>
+    	<record id="month9" model="fixture.month">
+    		<field name="name">Sep</field>
+    	</record>
+    	<record id="month10" model="fixture.month">
+    		<field name="name">Oct</field>
+    	</record>
+    	<record id="month11" model="fixture.month">
+    		<field name="name">Nov</field>
+    	</record>
+    	<record id="month12" model="fixture.month">
+    		<field name="name">Dec</field>
+    	</record>
+    	<record id="month13" model="fixture.month">
+    		<field name="name">Jan</field>
+    	</record>
+    	<record id="month14" model="fixture.month">
+    		<field name="name">Feb</field>
+    	</record>
+    	<record id="month15" model="fixture.month">
+    		<field name="name">Mar</field>
+    	</record>
+    	<record id="month16" model="fixture.month">
+    		<field name="name">Apr</field>
+    	</record>
+    	<record id="month17" model="fixture.month">
+    		<field name="name">May</field>
+    	</record>
+    
+    </data>
+</openerp>
