@@ -195,8 +195,11 @@
 					<field name="team_id" />
 					<field name="total_played" />
 					<field name="total_goal" />
+					<field name="total_pen" />
+					<field name="total_own_goal" />
 					<field name="total_yc" />
 					<field name="total_rc" />
+					<field name="total_subbed" />
 				</tree>
 			</field>
 		</record>
@@ -279,6 +282,7 @@
 			
 		<!-- Liga Season Players -->
 
+		<!-- 
 		<record model="ir.ui.view" id="liga_league_season_player_tree_view">
 			<field name="name">liga.league.season.player.tree</field>
 			<field name="model">league.season.player</field>
@@ -319,6 +323,7 @@
 				</form>
 			</field>
 		</record>
+		 -->
 
 		<record model="ir.actions.act_window" id="action_liga_league_season_player_tree_view">
 			<field name="name">Squads</field>

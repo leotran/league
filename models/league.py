@@ -115,9 +115,9 @@ class league_season_team(models.Model):
     
     league_season_id = fields.Many2one('league.season', string='League Season',
         ondelete='cascade')
-    league_id = fields.Many2one('league', string='League',
+    league_id = fields.Many2one('league', string='League', index=True,
         related='league_season_id.league_id', store=True, readonly=True)
-    season_id = fields.Many2one('season', string='Season',
+    season_id = fields.Many2one('season', string='Season', index=True,
         related='league_season_id.season_id', store=True, readonly=True)
     team_id = fields.Many2one('team', string='Team', required=True)
     name = fields.Char(string='Name', related='team_id.name', store=True, readonly=True)
@@ -141,22 +141,41 @@ class league_season_player(models.Model):
     @api.one
     @api.depends(
         'fixture_player_ids.player_id',
-        'fixture_player_ids.goal'
+        'fixture_player_ids.goal',
+        'fixture_player_ids.yc',
+        'fixture_player_ids.rc',
+        'fixture_player_ids.penalty',
+        'fixture_player_ids.own_goal',
+        'fixture_player_ids.subbed',
     )
     def _count(self):        
         goals = 0
+        yc = 0
+        rc = 0
+        pen = 0
+        own_goal = 0
+        subbed = 0
         for f in self.fixture_player_ids:
             goals += f.goal
+            yc += f.yc
+            rc += f.rc
+            pen += f.penalty
+            own_goal += f.own_goal
+            if f.subbed == 'on':
+                subbed += 1
         self.total_goal = goals
         self.total_played = len(self.fixture_player_ids)
-        self.total_yc = 0
-        self.total_rc = 0
+        self.total_yc = yc
+        self.total_rc = rc
+        self.total_pen = pen
+        self.total_own_goal = own_goal
+        self.total_subbed = subbed
     
     league_season_id = fields.Many2one('league.season', string='League Season',
         ondelete='cascade', required=True)
-    league_id = fields.Many2one('league', string='League',
+    league_id = fields.Many2one('league', string='League', index=True,
         related='league_season_id.league_id', store=True, readonly=True)
-    season_id = fields.Many2one('season', string='Season',
+    season_id = fields.Many2one('season', string='Season', index=True,
         related='league_season_id.season_id', store=True, readonly=True)
     team_id = fields.Many2one('team', string='Team', required=True)
     player_id = fields.Many2one('res.partner', string="Player", required=True,
@@ -167,6 +186,9 @@ class league_season_player(models.Model):
     total_goal = fields.Integer(string="Goals", readonly=True, store=True, compute='_count')
     total_yc = fields.Integer(string="Yellow Card", readonly=True, store=True, compute='_count')
     total_rc = fields.Integer(string="Red Card", readonly=True, store=True, compute='_count')
+    total_pen = fields.Integer(string="Penalty", readonly=True, store=True, compute='_count')
+    total_own_goal = fields.Integer(string="Own Goals", readonly=True, store=True, compute='_count')
+    total_subbed = fields.Integer(string="Subbed", readonly=True, store=True, compute='_count')
     fixture_player_ids = fields.One2many('fixture.player', 'player_id', string="Matches")    
     
     _order = "total_goal desc,total_played,name"
