@@ -28,7 +28,7 @@ class league(models.Model):
     
     name = fields.Char(string='Name', required=True)
     country_id = fields.Many2one('res.country',string='Country')
-    code = fields.Char(string='Code', required=True)
+    code = fields.Char(string='Code')
     
     def unlink(self, cr, uid, ids, context=None):
         raise except_orm(_('Error!'),_('League cannot delete!'))

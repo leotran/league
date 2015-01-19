@@ -276,6 +276,64 @@
 		<menuitem id="la_liga_season_team_menu" groups="league.group_league_user"
 			parent="menu_la_liga" action="action_liga_league_season_team_tree_view"
 			sequence="3" />
+			
+		<!-- Liga Season Players -->
+
+		<record model="ir.ui.view" id="liga_league_season_player_tree_view">
+			<field name="name">liga.league.season.player.tree</field>
+			<field name="model">league.season.player</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Season Player">
+					<field name="squad" />
+					<field name="player_id" />
+					<field name="team_id" />
+					<field name="total_played" />
+					<field name="total_goal" />
+					<field name="total_yc" />
+					<field name="total_rc" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="liga_league_season_player_form_view" model="ir.ui.view">
+			<field name="name">liga.league.season.player.form</field>
+			<field name="model">league.season.player</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Players">
+					<sheet>
+						<group>
+							<group>
+								<field name="squad" />
+								<field name="player_id" context="{'default_football_player':1}" />
+								<field name="team_id" />
+							</group>
+							<group>
+								<field name="league_season_id" />
+								<field name="league_id" />
+								<field name="season_id" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_liga_league_season_player_tree_view">
+			<field name="name">Squads</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">league.season.player</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('league_id','=',2)]</field>
+			<field name="context">{'default_league_id': 2,'search_default_open': 2}
+			</field>
+		</record>
+
+		<menuitem id="liga_league_season_player_menu" groups="league.group_league_user"
+			parent="menu_la_liga" action="action_liga_league_season_player_tree_view"
+			sequence="4" />
 
 	</data>
 </openerp>
